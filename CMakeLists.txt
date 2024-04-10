@@ -23,22 +23,7 @@ set(PROJECT_SOURCES
         MainWindow.ui
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(QtVideoPlayer
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-else()
-    if(ANDROID)
-        add_library(QtVideoPlayer SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(QtVideoPlayer
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
+qt_add_executable(QtVideoPlayer MANUAL_FINALIZATION ${PROJECT_SOURCES})
 
 target_link_libraries(QtVideoPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -58,6 +43,4 @@ install(TARGETS QtVideoPlayer
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(QtVideoPlayer)
-endif()
+qt_finalize_executable(QtVideoPlayer)

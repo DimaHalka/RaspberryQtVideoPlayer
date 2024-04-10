@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+class QMediaPlayer;
+class QVideoWidget;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,7 +18,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void openVideo();
+
 private:
+    QMediaPlayer *player;
+    QVideoWidget *videoWidget;
+
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
